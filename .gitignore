@@ -1,3 +1,7 @@
-*.xlsx
+venv/
+.venv/
+__pycache__/
+*.pyc
 *.csv
-app/artifacts/frontend_state/uploads/
+*.xlsx
+app/artifacts/

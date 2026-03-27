@@ -1,0 +1,253 @@
+{
+  "request_id": "req_local_test_001",
+  "session_id": "sess_local_test_001",
+  "user_id": "user_local_test_001",
+  "dataset_id": "demo_sales_dataset",
+  "dataset_path": "./data/demo_sales.csv",
+  "user_prompt": "请做一份详细且图表丰富的销售分析报告，重点关注区域、产品和时间趋势。",
+  "input_config": {
+    "language": "zh-CN",
+    "output_format": [
+      "markdown"
+    ]
+  },
+  "memory_context": {},
+  "normalized_task": {
+    "task_type": "reporting",
+    "analysis_mode": "reporting",
+    "business_goal": "生成可发布的数据分析报告",
+    "target_audience": "business_stakeholders",
+    "primary_questions": [
+      "时间趋势",
+      "区域差异",
+      "产品结构",
+      "销售表现"
+    ],
+    "constraints": {
+      "language": "zh-CN",
+      "prefer_visualization": true,
+      "detail_level": "high",
+      "desired_output_formats": [
+        "markdown"
+      ]
+    },
+    "ambiguities": [
+      {
+        "field": "time_scope",
+        "status": "unspecified",
+        "fallback_policy": "infer_from_dataset"
+      }
+    ],
+    "success_intent": "produce_publishable_analysis_report",
+    "normalization_notes": "rule_based_plus_llm_refine"
+  },
+  "revision_round": 0,
+  "max_review_rounds": 2,
+  "revision_tasks": [],
+  "revision_context": {},
+  "execution_mode": "normal",
+  "status": "DATASET_PROFILED",
+  "errors": [],
+  "warnings": [],
+  "degraded_output": false,
+  "dataset_context": {
+    "dataset_id": "demo_sales_dataset",
+    "profile_version": "1.0",
+    "source_path": "./data/demo_sales.csv",
+    "tables": [
+      {
+        "table_name": "demo_sales.csv",
+        "row_count": 10,
+        "column_count": 7,
+        "columns": [
+          {
+            "name": "order_id",
+            "physical_type": "int",
+            "semantic_type": "id",
+            "null_ratio": 0.0,
+            "unique_ratio": 1.0,
+            "non_null_count": 10,
+            "unique_count": 10,
+            "sample_values": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "role_candidates": [
+              "identifier"
+            ],
+            "semantic_confidence": 1.0
+          },
+          {
+            "name": "order_date",
+            "physical_type": "datetime",
+            "semantic_type": "date",
+            "null_ratio": 0.0,
+            "unique_ratio": 0.5,
+            "non_null_count": 10,
+            "unique_count": 5,
+            "sample_values": [
+              "2026-03-01",
+              "2026-03-02",
+              "2026-03-03",
+              "2026-03-04",
+              "2026-03-05"
+            ],
+            "role_candidates": [
+              "time_dimension"
+            ],
+            "semantic_confidence": 1.0
+          },
+          {
+            "name": "region",
+            "physical_type": "string",
+            "semantic_type": "category",
+            "null_ratio": 0.0,
+            "unique_ratio": 0.4,
+            "non_null_count": 10,
+            "unique_count": 4,
+            "sample_values": [
+              "East",
+              "West",
+              "South",
+              "North"
+            ],
+            "role_candidates": [
+              "business_dimension",
+              "geo_dimension"
+            ],
+            "semantic_confidence": 1.0
+          },
+          {
+            "name": "category",
+            "physical_type": "string",
+            "semantic_type": "category",
+            "null_ratio": 0.0,
+            "unique_ratio": 0.3,
+            "non_null_count": 10,
+            "unique_count": 3,
+            "sample_values": [
+              "Electronics",
+              "Home",
+              "Beauty"
+            ],
+            "role_candidates": [
+              "business_dimension",
+              "product_dimension"
+            ],
+            "semantic_confidence": 1.0
+          },
+          {
+            "name": "gmv",
+            "physical_type": "float",
+            "semantic_type": "metric",
+            "null_ratio": 0.1,
+            "unique_ratio": 0.9,
+            "non_null_count": 9,
+            "unique_count": 9,
+            "sample_values": [
+              "1200.0",
+              "500.0",
+              "1800.0",
+              "300.0",
+              "700.0"
+            ],
+            "role_candidates": [
+              "measure"
+            ],
+            "semantic_confidence": 1.0
+          },
+          {
+            "name": "cost",
+            "physical_type": "float",
+            "semantic_type": "metric",
+            "null_ratio": 0.1,
+            "unique_ratio": 0.9,
+            "non_null_count": 9,
+            "unique_count": 9,
+            "sample_values": [
+              "800.0",
+              "300.0",
+              "1200.0",
+              "120.0",
+              "420.0"
+            ],
+            "role_candidates": [
+              "measure"
+            ],
+            "semantic_confidence": 1.0
+          },
+          {
+            "name": "user_id",
+            "physical_type": "string",
+            "semantic_type": "id",
+            "null_ratio": 0.0,
+            "unique_ratio": 1.0,
+            "non_null_count": 10,
+            "unique_count": 10,
+            "sample_values": [
+              "u1",
+              "u2",
+              "u3",
+              "u4",
+              "u5"
+            ],
+            "role_candidates": [
+              "identifier",
+              "customer_dimension"
+            ],
+            "semantic_confidence": 1.0
+          }
+        ]
+      }
+    ],
+    "candidate_time_columns": [
+      "order_date"
+    ],
+    "candidate_measure_columns": [
+      "gmv",
+      "cost"
+    ],
+    "candidate_dimension_columns": [
+      "region",
+      "category"
+    ],
+    "candidate_id_columns": [
+      "order_id",
+      "user_id"
+    ],
+    "data_quality_summary": {
+      "missingness": [
+        {
+          "column": "gmv",
+          "null_ratio": 0.1
+        },
+        {
+          "column": "cost",
+          "null_ratio": 0.1
+        }
+      ],
+      "high_cardinality_columns": [],
+      "potential_outliers": [],
+      "duplicate_rows_ratio": 0.0
+    },
+    "time_coverage": {
+      "min": "2026-03-01",
+      "max": "2026-03-05",
+      "granularity_candidates": [
+        "day"
+      ]
+    },
+    "business_hints": [
+      "订单日期可用于分析时间趋势，如日销售变化。",
+      "区域维度适合分析地理分布差异，如东区销售最高。",
+      "产品类别维度可分析结构，如电子产品占比最大。",
+      "GMV和成本作为核心指标，可计算利润和利润率。",
+      "用户ID可用于客户分析，但需注意唯一性高。",
+      "数据覆盖5天，适合短期趋势分析。"
+    ],
+    "warnings": []
+  }
+}
