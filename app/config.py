@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from dotenv import load_dotenv
 
 load_dotenv()
-
+a = 1
 def _get_bool(name: str, default: str = "false") -> bool:
     return os.getenv(name, default).strip().lower() in {"1", "true", "yes", "on"}
 
